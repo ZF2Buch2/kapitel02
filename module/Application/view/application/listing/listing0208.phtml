@@ -1,0 +1,110 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 2
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 2.8 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 2.8</h1>
+<h3>Klasse für Pizza mit variablen Belägen und Pizzaboden</h3>
+<pre>
+&lt;?php 
+interface CrustInterface {}
+interface ToppingInterface {}
+
+class CrustWheatFlour implements CrustInterface {}
+class CrustSpeltFlour implements CrustInterface {}
+
+class ToppingSalami implements ToppingInterface {}
+class ToppingCheese implements ToppingInterface  {}
+class ToppingTomatoStodge implements ToppingInterface {}
+class ToppingElkSalami implements ToppingInterface {}
+
+class Pizza
+{
+    public function __construct(CrustInterface $crust)
+    {
+        $this->crust = $crust;
+    }
+
+    public function addTopping(ToppingInterface $topping)
+    {
+        $this->toppings[] = $topping;
+    }
+}
+
+$pizzaSalami = new Pizza(new CrustWheatFlour());
+$pizzaSalami->addTopping(new ToppingSalami());
+$pizzaSalami->addTopping(new ToppingCheese());
+$pizzaSalami->addTopping(new ToppingTomatoStodge());
+
+$pizzaSpeciale = new Pizza(new CrustSpeltFlour());
+$pizzaSpeciale->addTopping(new ToppingElkSalami());
+$pizzaSpeciale->addTopping(new ToppingCheese());
+$pizzaSpeciale->addTopping(new ToppingCheese());
+$pizzaSpeciale->addTopping(new ToppingTomatoStodge());
+
+echo "&lt;pre&gt;";
+var_dump($pizzaSalami);
+var_dump($pizzaSpeciale);
+echo "&lt;/pre&gt;";
+</pre>
+<h3>Ausgabe</h3>
+<?php 
+    interface CrustInterface {}
+    interface ToppingInterface {}
+    
+    class CrustWheatFlour implements CrustInterface {}
+    class CrustSpeltFlour implements CrustInterface {}
+    
+    class ToppingSalami implements ToppingInterface {}
+    class ToppingCheese implements ToppingInterface  {}
+    class ToppingTomatoStodge implements ToppingInterface {}
+    class ToppingElkSalami implements ToppingInterface {}
+    
+    class Pizza
+    {
+        public function __construct(CrustInterface $crust)
+        {
+            $this->crust = $crust;
+        }
+    
+        public function addTopping(ToppingInterface $topping)
+        {
+            $this->toppings[] = $topping;
+        }
+    }
+    
+    $pizzaSalami = new Pizza(new CrustWheatFlour());
+    $pizzaSalami->addTopping(new ToppingSalami());
+    $pizzaSalami->addTopping(new ToppingCheese());
+    $pizzaSalami->addTopping(new ToppingTomatoStodge());
+    
+    $pizzaSpeciale = new Pizza(new CrustSpeltFlour());
+    $pizzaSpeciale->addTopping(new ToppingElkSalami());
+    $pizzaSpeciale->addTopping(new ToppingCheese());
+    $pizzaSpeciale->addTopping(new ToppingCheese());
+    $pizzaSpeciale->addTopping(new ToppingTomatoStodge());
+    
+    echo "<pre>";
+    var_dump($pizzaSalami);
+    var_dump($pizzaSpeciale);
+    echo "</pre>";
+?>
+</div>
+</div>

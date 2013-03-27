@@ -1,0 +1,136 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 2
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 2.9 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 2.9</h1>
+<h3>Einfache Implementierung eines Service-Locators</h3>
+<pre>
+&lt;?php 
+interface CrustInterface {}
+interface ToppingInterface {}
+
+class CrustWheatFlour implements CrustInterface {}
+
+class ToppingSalami implements ToppingInterface {}
+class ToppingCheese implements ToppingInterface  {}
+class ToppingTomatoStodge implements ToppingInterface {}
+
+class Pizza
+{
+    public function __construct(CrustInterface $crust)
+    {
+        $this->crust = $crust;
+    }
+
+    public function addTopping(ToppingInterface $topping)
+    {
+        $this->toppings[] = $topping;
+    }
+}
+
+class ServiceLocator
+{
+    protected $services = array();
+    
+    public function set($id, $className)
+    {
+        $this->services[$id] = new $className();
+    }
+
+    public function get($id)
+    {
+        return $this->services[$id];
+    }
+}
+
+$sl = new ServiceLocator();
+$sl->set('wheat-crust', 'CrustWheatFlour');
+$sl->set('salami', 'ToppingSalami');
+$sl->set('cheese', 'ToppingCheese');
+$sl->set('tomato-stodge', 'ToppingTomatoStodge');
+
+$pizzaSalami = new Pizza($sl->get('wheat-crust'));
+$pizzaSalami->addTopping($sl->get('salami'));
+$pizzaSalami->addTopping($sl->get('cheese'));
+$pizzaSalami->addTopping($sl->get('tomato-stodge'));
+
+echo "&lt;pre&gt;";
+var_dump($sl);
+var_dump($pizzaSalami);
+echo "&lt;/pre&gt;";
+</pre>
+<h3>Ausgabe</h3>
+<?php 
+    interface CrustInterface {}
+    interface ToppingInterface {}
+    
+    class CrustWheatFlour implements CrustInterface {}
+    
+    class ToppingSalami implements ToppingInterface {}
+    class ToppingCheese implements ToppingInterface  {}
+    class ToppingTomatoStodge implements ToppingInterface {}
+    
+    class Pizza
+    {
+        public function __construct(CrustInterface $crust)
+        {
+            $this->crust = $crust;
+        }
+    
+        public function addTopping(ToppingInterface $topping)
+        {
+            $this->toppings[] = $topping;
+        }
+    }
+    
+    class ServiceLocator
+    {
+        protected $services = array();
+
+        public function set($id, $className)
+        {
+            $this->services[$id] = new $className();
+        }
+    
+        public function get($id)
+        {
+            return $this->services[$id];
+        }
+    }
+    
+    $sl = new ServiceLocator();
+    $sl->set('wheat-crust', 'CrustWheatFlour');
+    $sl->set('salami', 'ToppingSalami');
+    $sl->set('cheese', 'ToppingCheese');
+    $sl->set('tomato-stodge', 'ToppingTomatoStodge');
+    
+    $pizzaSalami = new Pizza($sl->get('wheat-crust'));
+    $pizzaSalami->addTopping($sl->get('salami'));
+    $pizzaSalami->addTopping($sl->get('cheese'));
+    $pizzaSalami->addTopping($sl->get('tomato-stodge'));
+    
+    echo "<pre>";
+    var_dump($sl);
+    var_dump($pizzaSalami);
+    echo "</pre>";
+?>
+</div>
+</div>

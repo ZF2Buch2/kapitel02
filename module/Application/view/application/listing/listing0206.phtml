@@ -1,0 +1,84 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 2
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 2.6 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 2.6</h1>
+<h3>Beispiel für Late Static Binding</h3>
+<pre>
+&lt;?php 
+class PizzaSalami {
+    public static function getNameSelf() {
+        return self::name();
+    }
+
+    public static function getNameStatic() {
+        return static::name();
+    }
+
+    public static function name() {
+        return 'Pizza mit Salami';
+    }
+}
+
+class PizzaSalamiPeperoni extends PizzaSalami {
+    public static function name() {
+        return 'Pizza mit Salami und Peperoni';
+    }
+}
+
+echo PizzaSalami::getNameSelf() . "&lt;br /&gt;";           // Pizza mit Salami
+echo PizzaSalami::getNameStatic() . "&lt;br /&gt;";         // Pizza mit Salami
+
+echo PizzaSalamiPeperoni::getNameSelf() . "&lt;br /&gt;";   // Pizza mit Salami
+echo PizzaSalamiPeperoni::getNameStatic() . "&lt;br /&gt;"; // Pizza mit Salami und Peperoni
+</pre>
+<h3>Ausgabe</h3>
+<pre>
+<?php 
+    class PizzaSalami {
+        public static function getNameSelf() {
+            return self::name();
+        }
+    
+        public static function getNameStatic() {
+            return static::name();
+        }
+    
+        public static function name() {
+            return 'Pizza mit Salami';
+        }
+    }
+    
+    class PizzaSalamiPeperoni extends PizzaSalami {
+        public static function name() {
+            return 'Pizza mit Salami und Peperoni';
+        }
+    }
+    
+    echo PizzaSalami::getNameSelf() . "<br />";           // Pizza mit Salami
+    echo PizzaSalami::getNameStatic() . "<br />";         // Pizza mit Salami
+    
+    echo PizzaSalamiPeperoni::getNameSelf() . "<br />";   // Pizza mit Salami
+    echo PizzaSalamiPeperoni::getNameStatic() . "<br />"; // Pizza mit Salami und Peperoni
+?>
+</pre>
+</div>
+</div>

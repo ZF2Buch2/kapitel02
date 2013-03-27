@@ -1,0 +1,80 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 2
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 2.7 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 2.7</h1>
+<h3>Klasse für eine Pizza Salami mit festen Belägen und Pizzaboden</h3>
+<pre>
+&lt;?php 
+class CrustWheatFlour {}
+class ToppingSalami {}
+class ToppingCheese {}
+class ToppingTomatoStodge {}
+
+class PizzaSalami
+{
+    public function __construct()
+    {
+        $this->crust = new CrustWheatFlour();
+
+        $this->toppings = array(
+            new ToppingSalami(),
+            new ToppingCheese(),
+            new ToppingTomatoStodge(),
+        );
+    }
+}
+
+$pizzaSalami = new PizzaSalami();
+
+echo "&lt;pre&gt;";
+var_dump($pizzaSalami);
+echo "&lt;/pre&gt;";
+</pre>
+<h3>Ausgabe</h3>
+<?php 
+    class CrustWheatFlour {}
+    class ToppingSalami {}
+    class ToppingCheese {}
+    class ToppingTomatoStodge {}
+    
+    class PizzaSalami
+    {
+        public function __construct()
+        {
+            $this->crust = new CrustWheatFlour();
+    
+            $this->toppings = array(
+                new ToppingSalami(),
+                new ToppingCheese(),
+                new ToppingTomatoStodge(),
+            );
+        }
+    }
+    
+    $pizzaSalami = new PizzaSalami();
+    
+    echo "<pre>";
+    var_dump($pizzaSalami);
+    echo "</pre>";
+?>
+</div>
+</div>

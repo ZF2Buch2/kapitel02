@@ -1,0 +1,164 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 2
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 2.11 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 2.11</h1>
+<h3>Beispiel für einen Event-Manager</h3>
+<pre>
+&lt;?php
+interface EventListener {}
+
+class SendConfirmation implements EventListener {
+    public function postOrder()
+    {
+        echo "Send order confirmation&lt;br /&gt;";
+    }
+}
+
+class UpdateStock implements EventListener {
+    public function postOrder()
+    {
+        echo "Update stock&lt;br /&gt;";
+    }
+}
+
+class BakePizza implements EventListener {
+    public function postOrder()
+    {
+        echo "Bake the pizza&lt;br /&gt;";
+    }
+}
+
+class CheckStock implements EventListener {
+    public function preOrder()
+    {
+        echo "Check stock&lt;br /&gt;";
+    }
+}
+
+class PizzaOrder
+{
+    public function __construct()
+    {
+        echo "Save order&lt;br /&gt;";
+    }
+}
+
+class EventManager
+{
+    protected $listeners = array();
+    
+    public function attach($event, EventListener $listener)
+    {
+        $this->listeners[$event][] = $listener;
+    }
+    public function trigger($event)
+    {
+        foreach ($this->listeners[$event] as $listener) {
+            $listener->$event();
+        }
+    }
+}
+
+$em = new EventManager();
+$em->attach('postOrder', new SendConfirmation());
+$em->attach('postOrder', new BakePizza());
+$em->attach('postOrder', new UpdateStock());
+$em->attach('preOrder', new CheckStock());
+
+$em->trigger('preOrder');
+
+$pizzaOrder = new PizzaOrder();
+
+$em->trigger('postOrder');
+</pre>
+<h3>Ausgabe</h3>
+<pre>
+<?php
+    interface EventListener {}
+    
+    class SendConfirmation implements EventListener {
+        public function postOrder()
+        {
+            echo "Send order confirmation<br />";
+        }
+    }
+    
+    class UpdateStock implements EventListener {
+        public function postOrder()
+        {
+            echo "Update stock<br />";
+        }
+    }
+    
+    class BakePizza implements EventListener {
+        public function postOrder()
+        {
+            echo "Bake the pizza<br />";
+        }
+    }
+    
+    class CheckStock implements EventListener {
+        public function preOrder()
+        {
+            echo "Check stock<br />";
+        }
+    }
+    
+    class PizzaOrder
+    {
+        public function __construct()
+        {
+            echo "Save order<br />";
+        }
+    }
+    
+    class EventManager
+    {
+        protected $listeners = array();
+        
+        public function attach($event, EventListener $listener)
+        {
+            $this->listeners[$event][] = $listener;
+        }
+        public function trigger($event)
+        {
+            foreach ($this->listeners[$event] as $listener) {
+                $listener->$event();
+            }
+        }
+    }
+    
+    $em = new EventManager();
+    $em->attach('postOrder', new SendConfirmation());
+    $em->attach('postOrder', new BakePizza());
+    $em->attach('postOrder', new UpdateStock());
+    $em->attach('preOrder', new CheckStock());
+    
+    $em->trigger('preOrder');
+    
+    $pizzaOrder = new PizzaOrder();
+    
+    $em->trigger('postOrder');
+?>
+</pre>
+</div>
+</div>

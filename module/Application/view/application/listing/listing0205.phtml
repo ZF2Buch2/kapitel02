@@ -1,0 +1,68 @@
+<?php 
+/**
+ * ZF2 Buch Kapitel 2
+ * 
+ * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * von Ralf Eggert ist im Addison-Wesley Verlag erschienen. 
+ * ISBN 978-3-8273-2994-3
+ * 
+ * @package    Application
+ * @author     Ralf Eggert <r.eggert@travello.de>
+ * @copyright  Alle Listings sind urheberrechtlich geschützt!
+ * @link       http://www.zendframeworkbuch.de/ und http://www.awl.de/2994
+ */
+
+/**
+ * Listing 2.5 view script
+ * 
+ * @package    Application
+ */
+?>
+<div class="row">
+<div class="span9">
+<h1>Listing 2.5</h1>
+<h3>Beispiel für eine Closure Definition als Parameter einer Funktion</h3>
+<pre>
+&lt;?php 
+class PizzaSalami {}
+class PizzaHawaii {}
+class PizzaMelon {}
+
+$pizzaList = array(
+    new PizzaSalami(),
+    new PizzaHawaii(),
+    new PizzaMelon(),
+    new PizzaSalami()
+);
+
+$pizzaSalamiOnly = array_filter($pizzaList, function($val) {
+    return ($val instanceof PizzaSalami);
+});
+
+echo "&lt;pre&gt;";
+var_dump($pizzaSalamiOnly);
+echo "&lt;/pre&gt;";
+</pre>
+<h3>Ausgabe</h3>
+<?php 
+    class PizzaSalami {}
+    class PizzaHawaii {}
+    class PizzaMelon {}
+    
+    $pizzaList = array(
+        new PizzaSalami(),
+        new PizzaHawaii(),
+        new PizzaMelon(),
+        new PizzaSalami()
+    );
+    
+    $pizzaSalamiOnly = array_filter($pizzaList, function($val) {
+        return ($val instanceof PizzaSalami);
+    });
+    
+    echo "<pre>";
+    var_dump($pizzaSalamiOnly);
+    echo "</pre>";
+?>
+</div>
+</div>
