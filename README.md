@@ -1,8 +1,8 @@
 ZF2 Buch - Kapitel 02
 =====================
 
-Die Projektdateien für das Kapitel 02 vom Buch **Zend Framework 2 - Von den 
-Grundlagen bis zur fertigen Anwendung** (*ISBN 978-3-8362-2610-3*) von Ralf Eggert 
+Die Projektdateien für das Kapitel 02 vom Buch **Zend Framework 2 - Das
+Praxisbuch** (*ISBN 978-3-8362-2610-3*) von Ralf Eggert 
 aus dem Galileo-Computing Verlag installieren Sie wie folgt:
 
 * Sie können die Projektdateien von https://github.com/ZF2Buch2/kapitel02 als  
