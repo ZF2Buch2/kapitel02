@@ -2,7 +2,7 @@
 /**
  * ZF2 Buch Kapitel 2
  * 
- * Das Buch "Zend Framework 2 - Von den Grundlagen bis zur fertigen Anwendung"
+ * Das Buch "Zend Framework 2 - Das Praxisbuch"
  * von Ralf Eggert ist im Galileo-Computing Verlag erschienen. 
  * ISBN 978-3-8362-2610-3
  * 
